@@ -3,7 +3,6 @@ package com.example.myapplication
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -13,7 +12,7 @@ import com.example.myapplication.databinding.FragmentUserListBinding
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class UserListFragment : Fragment(R.layout.fragment_user_list) {
+class UserListFragment : BaseFragment(R.layout.fragment_user_list) {
     private val viewModel: UserListViewModel by viewModels()
     private val viewBinding by viewBinding(FragmentUserListBinding::bind)
 
