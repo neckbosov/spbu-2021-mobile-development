@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.myapplication.databinding.FragmentOnboardingBinding
@@ -14,17 +15,89 @@ import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
+import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.selects.select
 
 
 class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
     companion object {
         const val VOLUME_UP_KEY = "volume_up"
         const val CURRENT_POSITION_KEY = "current_position"
+
+        class AutoScroller(
+            private val viewPager2: ViewPager2,
+            private val scope: CoroutineScope,
+            private val period: Long = 4000L
+        ) {
+            private val interactionChannel: Channel<Unit> = Channel()
+            private lateinit var intervalJob: Job
+
+            private val scrollingJob: Job = scope.launch(start = CoroutineStart.LAZY) {
+                while (isActive) {
+                    val intervalChannel = Channel<Unit>()
+                    intervalJob = launch {
+                        delay(period)
+                        intervalChannel.send(Unit)
+                    }
+                    select<Unit> {
+                        intervalChannel.onReceive {
+                            viewPager2.currentItem =
+                                (viewPager2.currentItem + 1) % (viewPager2.adapter?.itemCount ?: 3)
+                        }
+                        interactionChannel.onReceive {
+                            intervalJob.cancelAndJoin()
+                        }
+                    }
+                }
+            }
+
+            init {
+                viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                    override fun onPageScrollStateChanged(state: Int) {
+                        super.onPageScrollStateChanged(state)
+                        restartScroller()
+                    }
+
+                    override fun onPageScrolled(
+                        position: Int,
+                        positionOffset: Float,
+                        positionOffsetPixels: Int
+                    ) {
+                        super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                        restartScroller()
+                    }
+
+                    override fun onPageSelected(position: Int) {
+                        super.onPageSelected(position)
+                        restartScroller()
+                    }
+
+                    private fun restartScroller() {
+                        scope.launch {
+                            interactionChannel.send(Unit)
+                        }
+                    }
+                })
+            }
+
+            fun start() {
+                scrollingJob.start()
+            }
+
+            fun stop() {
+                scope.launch {
+                    scrollingJob.cancelAndJoin()
+                    intervalJob.cancelAndJoin()
+                }
+            }
+        }
     }
 
     private val viewBinding by viewBinding(FragmentOnboardingBinding::bind)
 
     private lateinit var player: ExoPlayer
+    private lateinit var scroller: AutoScroller
     private var volumeUp = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,6 +135,8 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
             Toast.makeText(requireContext(), "Нажата кнопка зарегистрироваться", Toast.LENGTH_SHORT)
                 .show()
         }
+        scroller = AutoScroller(viewBinding.viewPager, lifecycleScope)
+        scroller.start()
     }
 
 
@@ -94,6 +169,7 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
     override fun onDestroy() {
         super.onDestroy()
         player.release()
+        scroller.stop()
     }
 
     private fun ViewPager2.setTextPages() {
