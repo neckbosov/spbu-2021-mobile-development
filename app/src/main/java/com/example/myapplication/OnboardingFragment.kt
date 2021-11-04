@@ -21,7 +21,7 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         player = SimpleExoPlayer.Builder(requireContext()).build().apply {
-            addMediaItem(MediaItem.fromUri("assets:///onboarding.mp4"))
+            addMediaItem(MediaItem.fromUri("asset:///onboarding.mp4"))
             repeatMode = Player.REPEAT_MODE_ALL
             prepare()
         }
