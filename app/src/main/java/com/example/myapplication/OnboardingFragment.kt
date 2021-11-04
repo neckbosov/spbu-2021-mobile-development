@@ -52,7 +52,7 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
                 }
             }
 
-            init {
+            fun start() {
                 viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                     override fun onPageScrollStateChanged(state: Int) {
                         super.onPageScrollStateChanged(state)
@@ -79,9 +79,6 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
                         }
                     }
                 })
-            }
-
-            fun start() {
                 scrollingJob.start()
             }
 
