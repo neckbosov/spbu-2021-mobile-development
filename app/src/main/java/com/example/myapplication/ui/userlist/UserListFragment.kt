@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.ui.userlist
 
 import android.os.Bundle
 import android.view.View
@@ -8,7 +8,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentUserListBinding
+import com.example.myapplication.ui.base.BaseFragment
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 

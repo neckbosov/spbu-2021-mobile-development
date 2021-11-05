@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.ui.onboarding
 
 import android.os.Bundle
 import android.view.View
@@ -7,7 +7,9 @@ import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentOnboardingBinding
+import com.example.myapplication.ui.base.BaseFragment
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
