@@ -165,8 +165,8 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
         player.pause()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         player.release()
         scroller.stop()
     }
