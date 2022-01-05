@@ -1,7 +1,9 @@
-package com.example.myapplication
+package com.example.myapplication.ui.userlist
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.myapplication.data.network.API
+import com.example.myapplication.entity.User
+import com.example.myapplication.ui.base.BaseViewModel
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -14,7 +16,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-class UserListViewModel : ViewModel() {
+class UserListViewModel : BaseViewModel() {
     sealed class ViewState {
         object Loading : ViewState()
         data class Data(val users: List<User>) : ViewState()

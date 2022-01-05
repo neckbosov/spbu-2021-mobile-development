@@ -1,13 +1,15 @@
-package com.example.myapplication
+package com.example.myapplication.ui.onboarding
 
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentOnboardingBinding
+import com.example.myapplication.ui.base.BaseFragment
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
@@ -124,13 +126,10 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
         }
 
         viewBinding.signInButton.setOnClickListener {
-            // TODO: Go to SignInFragment.
-            Toast.makeText(requireContext(), "Нажата кнопка войти", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_onboardingFragment_to_signInFragment)
         }
         viewBinding.signUpButton.setOnClickListener {
-            // TODO: Go to SignUpFragment.
-            Toast.makeText(requireContext(), "Нажата кнопка зарегистрироваться", Toast.LENGTH_SHORT)
-                .show()
+            findNavController().navigate(R.id.action_onboardingFragment_to_signUpFragment)
         }
         scroller = AutoScroller(viewBinding.viewPager, lifecycleScope)
         scroller.start()

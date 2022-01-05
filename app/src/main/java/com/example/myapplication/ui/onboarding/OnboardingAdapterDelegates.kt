@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.ui.onboarding
 
 import com.example.myapplication.databinding.ItemOnboardingTextBinding
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
