@@ -33,6 +33,7 @@
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="40dp"
         android:hint="@string/sign_in_email_text_layout_hint"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mknLogoImageView">
