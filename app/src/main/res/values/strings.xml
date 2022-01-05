@@ -30,4 +30,8 @@
     <string name="sign_up_firstname_text_layout_hint">Имя</string>
     <string name="sign_up_under_nickname_text">Будет видно другим пользователям</string>
     <string name="sign_up_under_email_text">Будет видна только вам</string>
+    <string name="verification_code_sent">Код подтверждения выслан вам на почту</string>
+    <string name="email_confirmation_send_code_again">Выслать код повторно</string>
+    <string name="email_confirmation_verify_code">Подтвердить код</string>
+    <string name="email_confirmation_open_email">Открыть почту</string>
 </resources>
