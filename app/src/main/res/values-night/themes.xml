@@ -11,11 +11,12 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Customize your theme here. -->
         <item name="verificationCodeEditTextStyle">
-            @style/Widget.OurAwesomeApp.VerificationCodeEditText
+            @style/Widget.MyApplication.VerificationCodeEditText
         </item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
+        <item name="materialButtonStyle">@style/Widget.MyApplication.Button.Primary</item>
     </style>
 </resources>

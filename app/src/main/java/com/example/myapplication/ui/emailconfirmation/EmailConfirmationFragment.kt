@@ -8,6 +8,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentEmailConfirmationBinding
 import com.example.myapplication.ui.base.BaseFragment
+import dev.chrisbanes.insetter.applyInsetter
 
 class EmailConfirmationFragment : BaseFragment(R.layout.fragment_email_confirmation) {
     private val viewBinding by viewBinding(FragmentEmailConfirmationBinding::bind)
@@ -16,6 +17,9 @@ class EmailConfirmationFragment : BaseFragment(R.layout.fragment_email_confirmat
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewBinding.backButton.applyInsetter {
+            type(statusBars = true) { margin() }
+        }
         viewBinding.backButton.setOnClickListener {
             findNavController().popBackStack()
         }

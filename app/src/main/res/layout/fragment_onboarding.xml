@@ -78,6 +78,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
+            style="@style/Widget.MyApplication.Button.Secondary"
             android:id="@+id/signUpButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

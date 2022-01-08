@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Widget.OurAwesomeApp.VerificationCodeEditText" parent="">
+    <style name="Widget.MyApplication.VerificationCodeEditText" parent="">
         <item name="vcet_numberOfSlots">6</item>
     </style>
+
+    <style name="Widget.MyApplication.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:minHeight">56dp</item>
+    </style>
+
+    <style name="Widget.MyApplication.Button.Primary">
+        <item name="backgroundTint">@color/brand_orange</item>
+    </style>
+
+    <style name="Widget.MyApplication.Button.Secondary">
+        <item name="backgroundTint">@color/brand_cian</item>
+    </style>
+
+    <style name="Widget.MyApplication.BackButton" parent="Widget.AppCompat.ImageButton">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:src">@drawable/ic_arrow_back_black_24dp</item>
+    </style>
+
 </resources>
