@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.OurAwesomeApp.VerificationCodeEditText" parent="">
+        <item name="vcet_numberOfSlots">6</item>
+    </style>
+</resources>
