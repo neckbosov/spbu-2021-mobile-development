@@ -16,6 +16,7 @@ import com.google.android.exoplayer2.Player
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
+import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.selects.select
@@ -100,6 +101,12 @@ class OnboardingFragment : BaseFragment(R.layout.fragment_onboarding) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewBinding.volumeControlButton.applyInsetter {
+            type(statusBars = true) { margin() }
+        }
+        viewBinding.signUpButton.applyInsetter {
+            type(navigationBars = true) { margin() }
+        }
         player = ExoPlayer.Builder(requireContext()).build().apply {
             addMediaItem(MediaItem.fromUri("asset:///onboarding.mp4"))
             repeatMode = Player.REPEAT_MODE_ALL
