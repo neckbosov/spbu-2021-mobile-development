@@ -7,38 +7,64 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.core.view.updateLayoutParams
+import com.example.myapplication.R
 import com.example.myapplication.databinding.ViewVerificationCodeEditTextBinding
 import java.lang.Math.min
+import kotlin.properties.Delegates
 
 
 class VerificationCodeEditText @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0,
+    defStyleAttr: Int = R.attr.verificationCodeEditTextStyle,
     defStyleRes: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr, defStyleRes) {
 
     private val viewBinding =
         ViewVerificationCodeEditTextBinding.inflate(LayoutInflater.from(context), this)
 
-    private val slotViews: List<VerificationCodeSlotView> =
-        listOf(
-            viewBinding.slot1,
-            viewBinding.slot2,
-            viewBinding.slot3,
-            viewBinding.slot4,
-            viewBinding.slot5,
-            viewBinding.slot6
-        )
+    private var numberOfSlots: Int by Delegates.observable(0) { _, _, newValue ->
+        viewBinding.verificationSlotsLayout.removeAllViews()
+        slotViews.clear()
+        for (i in 0 until newValue) {
+            val slotView = VerificationCodeSlotView(context)
+            val width = resources.getDimension(R.dimen.verification_code_slot_width).toInt()
+            val height = resources.getDimension(R.dimen.verification_code_slot_height).toInt()
+            val horizontalMargin =
+                resources.getDimension(R.dimen.verification_code_slot_horizontal_margin).toInt()
+            slotView.background =
+                ContextCompat.getDrawable(context, R.drawable.selector_bg_verification_code_slot)
+            slotView.layoutParams = LayoutParams(width, height)
+            slotView.updateLayoutParams<LayoutParams> {
+                marginStart = horizontalMargin
+                marginEnd = horizontalMargin
+            }
+            viewBinding.verificationSlotsLayout.addView(slotView, i)
+            slotViews.add(slotView)
+        }
+        slotValues = Array(newValue) { null }
+    }
 
-    private val slotValues: Array<CharSequence?> = Array(6) { null }
+    private val slotViews: MutableList<VerificationCodeSlotView> = mutableListOf()
+
+    private var slotValues: Array<CharSequence?> = Array(0) { null }
 
     var onVerificationCodeFilledListener: (String) -> Unit = {}
 
     var onVerificationCodeFilledChangeListener: (Boolean) -> Unit = {}
 
     init {
+        context.theme.obtainStyledAttributes(
+            attrs,
+            R.styleable.VerificationCodeEditText,
+            defStyleAttr,
+            defStyleRes
+        ).run {
+            numberOfSlots = getInt(R.styleable.VerificationCodeEditText_vcet_numberOfSlots, 0)
+        }
         viewBinding.realVerificationCodeEditText.addTextChangedListener(
 
             object : TextWatcher {
