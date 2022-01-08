@@ -63,7 +63,7 @@ class VerificationCodeEditText @JvmOverloads constructor(
             defStyleAttr,
             defStyleRes
         ).run {
-            numberOfSlots = getInt(R.styleable.VerificationCodeEditText_vcet_numberOfSlots, 0)
+            numberOfSlots = getInt(R.styleable.VerificationCodeEditText_vcet_numberOfSlots, 6)
         }
         viewBinding.realVerificationCodeEditText.addTextChangedListener(
 
