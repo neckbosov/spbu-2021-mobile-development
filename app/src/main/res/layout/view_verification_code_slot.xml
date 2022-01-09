@@ -7,7 +7,7 @@
     android:background="@drawable/selector_bg_verification_code_slot"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/slotValueTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

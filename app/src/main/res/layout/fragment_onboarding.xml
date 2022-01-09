@@ -66,7 +66,7 @@
             app:tabMaxWidth="18dp"
             app:tabMinWidth="18dp" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/signInButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             style="@style/Widget.MyApplication.Button.Secondary"
             android:id="@+id/signUpButton"
             android:layout_width="0dp"

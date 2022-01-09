@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.MyApplication" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/brand_orange</item>
+        <item name="colorPrimary">@color/brand_blue</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
@@ -18,5 +18,7 @@
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
         <item name="materialButtonStyle">@style/Widget.MyApplication.Button.Primary</item>
+        <item name="checkboxStyle">@style/Widget.MyApplication.CheckBox</item>
+        <item name="editTextStyle">@style/Widget.MyApplication.EditText</item>
     </style>
 </resources>

@@ -26,4 +26,25 @@
         <item name="android:src">@drawable/ic_arrow_back_black_24dp</item>
     </style>
 
+    <style name="Widget.MyApplication.LinkButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:gravity">center</item>
+        <item name="maxWidth">300dp</item>
+        <item name="minHeight">48dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body1</item>
+        <item name="android:textColor">@color/brand_blue</item>
+    </style>
+
+    <style name="Widget.MyApplication.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@color/brand_orange</item>
+    </style>
+
+    <style name="Widget.MyApplication.CheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:buttonTint">@color/brand_blue</item>
+    </style>
 </resources>
