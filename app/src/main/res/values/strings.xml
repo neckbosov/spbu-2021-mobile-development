@@ -34,4 +34,9 @@
     <string name="email_confirmation_send_code_again">Выслать код повторно</string>
     <string name="email_confirmation_verify_code">Подтвердить код</string>
     <string name="email_confirmation_open_email">Открыть почту</string>
+    <string name="news_toolbar_title">Мобильная разработка</string>
+    <string name="logout_button_text">Logout</string>
+    <string name="logout_button_desc">Logout button</string>
+    <string name="profile_image">Profile Image</string>
+    <string name="profile_toolbar_title">Профиль</string>
 </resources>
