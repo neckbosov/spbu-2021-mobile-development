@@ -33,8 +33,8 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
             .load(userList[position].avatarUrl)
             .circleCrop()
             .into(holder.avatarImageView)
-        holder.nameView.text = userList[position].name
-        holder.groupNameView.text = userList[position].email
+        holder.nameView.text = userList[position].userName
+        holder.groupNameView.text = userList[position].groupName
     }
 
     override fun getItemCount(): Int = userList.size
